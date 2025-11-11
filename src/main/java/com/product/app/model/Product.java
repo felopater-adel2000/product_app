@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    int id;
+    Long id;
 
     @NotBlank(message = "Product name is required")
     @Size(min = 1, max = 50, message = "Product name must be between 2 and 100 characters")

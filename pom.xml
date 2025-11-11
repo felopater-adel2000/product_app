@@ -115,12 +115,6 @@
             <version>${hibernate.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.8.Final</version>
-        </dependency>
-
         <!-- PostgreSQL Connector -->
         <dependency>
             <groupId>org.postgresql</groupId>

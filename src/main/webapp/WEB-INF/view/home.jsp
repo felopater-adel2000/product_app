@@ -10,6 +10,15 @@
 </head>
 <body>
 <h1>Products Data</h1>
+
+<!-- Display success/error messages -->
+<c:if test="${msg != null}">
+	<div class="alert alert-success">${msg}</div>
+</c:if>
+<c:if test="${err != null}">
+	<div class="alert alert-danger">${err}</div>
+</c:if>
+
 <div class="tbl-div">
     <table class="table">
         <thead class="thead-dark">
@@ -17,35 +26,33 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Show Details</th>
-            <th scope="col">Add/Update</th>
+	        <th scope="col">Add/Update Details</th>
             <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${productsList}" var="item">
+        <c:forEach items="${products}" var="item">
             <tr>
                 <td>${item.id}</td>
                 <td>${item.name}</td>
                 <td>
-                    <form:form action="showProductDetails">
-                        <input type="submit" class="btn btn-primary" value="View Details"/>
-                    </form:form>
+	                <a href="<c:url value='/product/${item.id}' />" class="btn btn-primary">View Details</a>
                 </td>
                 <td>
-                    <form:form action="updateProduct">
-                        <input type="submit" class="btn btn-warning" value="Add/update Details"/>
-                    </form:form>
+	                <a href="<c:url value='/product/${item.id}/details' />" class="btn btn-warning">Add/Update
+		                Details</a>
                 </td>
                 <td>
-                    <form:form action="deleteProduct">
-                        <input type="submit" class="btn btn-danger" value="Delete"/>
-                    </form:form>
+	                <form action="<c:url value='/product/${item.id}/delete' />" method="post" style="display:inline;">
+		                <input type="submit" class="btn btn-danger" value="Delete"
+		                       onclick="return confirm('Are you sure you want to delete this product?')"/>
+	                </form>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <form:form action="addProduct">
+    <form:form action="product/add">
         <input type="submit" class="btn btn-success" value="Add new Product"/>
     </form:form>
 </div>
